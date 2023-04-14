@@ -19,7 +19,10 @@ class Scene2 extends Phaser.Scene {
         this.ship1 = this.add.sprite(config.width / 2 - 50, config.height / 2, "ship")
         this.ship2 = this.add.sprite(config.width / 2, config.height / 2, "ship2")
         this.ship3 = this.add.sprite(config.width / 2 + 50, config.height / 2, "ship3")
+        this.ship4 = this.add.sprite(config.width / 2 + 70, config.height / 2, "ship4")
+        this.ship5 = this.add.sprite(config.width / 2 + 70, config.height / 2, "ship5")
 
+        // membuat animasi
         this.anims.create({
             key: "ship1_anim",
             frames: this.anims.generateFrameNumbers("ship"),
@@ -39,6 +42,18 @@ class Scene2 extends Phaser.Scene {
             repeat: -1 // berapa kali dia akan looping, untuk infinite loop gunakan -1
         })
         this.anims.create({
+            key: "ship4_anim",
+            frames: this.anims.generateFrameNumbers("ship4"),
+            frameRate: 20, // frame per second 20
+            repeat: -1 // berapa kali dia akan looping, untuk infinite loop gunakan -1
+        })
+        this.anims.create({
+            key: "ship5_anim",
+            frames: this.anims.generateFrameNumbers("ship4"),
+            frameRate: 20, // frame per second 20
+            repeat: -1 // berapa kali dia akan looping, untuk infinite loop gunakan -1
+        })
+        this.anims.create({
             key: "explode",
             frames: this.anims.generateFrameNumbers("explosion"),
             frameRate: 20, // frame per second 20
@@ -49,10 +64,15 @@ class Scene2 extends Phaser.Scene {
         this.ship1.play("ship1_anim"); // play animasi ship1_anim
         this.ship2.play("ship2_anim"); // play animasi ship2_anim
         this.ship3.play("ship3_anim"); // play animasi ship3_anim
+        this.ship4.play("ship4_anim"); // play animasi ship3_anim
+        this.ship4.play("ship5_anim"); // play animasi ship3_anim
 
+        // membuat objek menjadi interactive ( bisa disentuh, bisa dibuatkan event)
         this.ship1.setInteractive() // membuat ship1 interactive
         this.ship2.setInteractive() // membuat ship2 interactive
         this.ship3.setInteractive() // membuat ship3 interactive
+        this.ship4.setInteractive() // membuat ship4 interactive
+        this.ship5.setInteractive() // membuat ship4 interactive
         // ini seperti inisialiasi dulu
 
         this.input.on('gameobjectdown', this.destroyShip, this);
@@ -83,6 +103,8 @@ class Scene2 extends Phaser.Scene {
         this.moveShip(this.ship1, 1)
         this.moveShip(this.ship2, 2)
         this.moveShip(this.ship3, 3)
+        this.moveShip(this.ship4, 4)
+        this.moveShip(this.ship5, 3)
 
         this.background.tilePositionY -= 0.5 // mengganti posisi background koordinat Y
     }
